@@ -1,0 +1,1 @@
+# whatsapp-macos-export-tool

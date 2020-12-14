@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D25039A2587F4FC00121FBD /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2503992587F4FC00121FBD /* WindowController.m */; };
+		4D25039C2587FFD900121FBD /* getdevices.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D25039B2587FFD900121FBD /* getdevices.sh */; };
+		4D25039E2588102500121FBD /* Tools.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D25039D2588102500121FBD /* Tools.png */; };
 		4D2BCA632585ACFB00689404 /* CParseXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2BCA622585ACFB00689404 /* CParseXML.m */; };
 		4D2BCA6525863BD200689404 /* launcher.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D2BCA6425863BD200689404 /* launcher.sh */; };
 		4D6139D825850682003DFC32 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6139D725850682003DFC32 /* AppDelegate.m */; };
@@ -23,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D2503982587F4FC00121FBD /* WindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
+		4D2503992587F4FC00121FBD /* WindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
+		4D25039B2587FFD900121FBD /* getdevices.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = getdevices.sh; sourceTree = "<group>"; };
+		4D25039D2588102500121FBD /* Tools.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tools.png; sourceTree = "<group>"; };
 		4D2BCA612585ACFB00689404 /* CParseXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CParseXML.h; sourceTree = "<group>"; };
 		4D2BCA622585ACFB00689404 /* CParseXML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CParseXML.m; sourceTree = "<group>"; };
 		4D2BCA6425863BD200689404 /* launcher.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = launcher.sh; sourceTree = "<group>"; };
@@ -59,6 +66,8 @@
 		4D6139CA25850682003DFC32 = {
 			isa = PBXGroup;
 			children = (
+				4D25039D2588102500121FBD /* Tools.png */,
+				4D25039B2587FFD900121FBD /* getdevices.sh */,
 				4DE9E6572586579100AD2C66 /* write.sh */,
 				4D2BCA6425863BD200689404 /* launcher.sh */,
 				4D6139D525850682003DFC32 /* whatsapptool */,
@@ -91,6 +100,8 @@
 				4D6139E425850684003DFC32 /* whatsapptool.entitlements */,
 				4D2BCA612585ACFB00689404 /* CParseXML.h */,
 				4D2BCA622585ACFB00689404 /* CParseXML.m */,
+				4D2503982587F4FC00121FBD /* WindowController.h */,
+				4D2503992587F4FC00121FBD /* WindowController.m */,
 			);
 			path = whatsapptool;
 			sourceTree = "<group>";
@@ -165,7 +176,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DE9E64D25864C1300AD2C66 /* lock-icon.icns in Resources */,
+				4D25039C2587FFD900121FBD /* getdevices.sh in Resources */,
 				4D6139DD25850684003DFC32 /* Assets.xcassets in Resources */,
+				4D25039E2588102500121FBD /* Tools.png in Resources */,
 				4DE9E64C25864C1300AD2C66 /* script.sh in Resources */,
 				4D2BCA6525863BD200689404 /* launcher.sh in Resources */,
 				4DE9E6582586579200AD2C66 /* write.sh in Resources */,
@@ -202,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D6139DB25850682003DFC32 /* ViewController.m in Sources */,
+				4D25039A2587F4FC00121FBD /* WindowController.m in Sources */,
 				4DE9E63F25864A1600AD2C66 /* STPrivilegedTask.m in Sources */,
 				4D2BCA632585ACFB00689404 /* CParseXML.m in Sources */,
 				4D6139E325850684003DFC32 /* main.m in Sources */,
@@ -339,6 +353,7 @@
 				CODE_SIGN_ENTITLEMENTS = whatsapptool/whatsapptool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = Tools.png;
 				INFOPLIST_FILE = whatsapptool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -356,6 +371,7 @@
 				CODE_SIGN_ENTITLEMENTS = whatsapptool/whatsapptool.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = Tools.png;
 				INFOPLIST_FILE = whatsapptool/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

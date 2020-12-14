@@ -684,7 +684,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="WindowController" sceneMemberID="viewController">
                     <window key="window" title="export tool" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -692,7 +692,7 @@
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <accessibility description="export tool"/>
                         <connections>
-                            <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="zp8-wv-0w4"/>
                         </connections>
                     </window>
                     <connections>
@@ -761,6 +761,30 @@
                                             <action selector="writeAJson:" target="XfG-lQ-9wD" id="jq3-Ao-cbk"/>
                                         </connections>
                                     </button>
+                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lpb-fD-Kjc">
+                                        <rect key="frame" x="273" y="321" width="224" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="CgQ-mM-xyL" id="s8S-vh-g5h">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <menu key="menu" autoenablesItems="NO" id="JUW-uu-Oxb">
+                                                <items>
+                                                    <menuItem title="Item 1" id="CgQ-mM-xyL"/>
+                                                    <menuItem title="Item 2" id="MCx-N1-y97"/>
+                                                    <menuItem title="Item 3" id="zFE-wL-nEf"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                    </popUpButton>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vRw-dg-6kV">
+                                        <rect key="frame" x="159" y="328" width="109" height="16"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="select a emulator" id="dYj-pY-Liy">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                             </view>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cJS-FF-DfR">
@@ -774,8 +798,8 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oXK-x0-T36">
-                                <rect key="frame" x="483" y="527" width="411" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="charWrapping" alignment="center" title="when you want to get a new whatschat account，you must refresh" id="ogA-K2-eh6">
+                                <rect key="frame" x="626" y="527" width="268" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" alignment="center" title="Click Refresh when an emulator is on or off" id="ogA-K2-eh6">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -796,6 +820,7 @@
                     <connections>
                         <outlet property="ccField" destination="mmS-6e-lfv" id="C1N-6m-bhT"/>
                         <outlet property="phoneField" destination="QfC-Dg-Pcb" id="NdT-j4-Duw"/>
+                        <outlet property="popBtn" destination="lpb-fD-Kjc" id="xbe-BS-Buz"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

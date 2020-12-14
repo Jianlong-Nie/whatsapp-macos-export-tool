@@ -9,12 +9,14 @@
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 
-@interface ViewController : NSViewController{
+@interface ViewController : NSViewController<NSWindowDelegate>{
     NSString *_rootpath;
     NSMutableDictionary *dic;
+    NSMutableArray *devices;
 }
 @property(nonatomic, weak) IBOutlet NSTextField *ccField;
 @property(nonatomic, weak) IBOutlet NSTextField *phoneField;
+@property(nonatomic, weak) IBOutlet NSPopUpButton *popBtn;
 -(IBAction)writeAJson:(id)sender;
 @end
 

@@ -14,15 +14,66 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self runSTPrivilegedTask];
-    //单例对象:在程序运行期间,只有一个对象存在
+    self.view.window.delegate =self;
+    [self.popBtn setTarget:self];
+    [self.popBtn setAction:@selector(handlePopBtn:)];
+
+    [self getDevices];
+   
+
+}
+-(void)getDevices{
+      NSString *cmd = @"/bin/sh getdevices.sh";
+       NSString *result =[[self runTask:cmd] componentsSeparatedByString:@"attached"][1];
+       NSArray *arr =[result componentsSeparatedByString:@"\n"];
+       devices = [[NSMutableArray alloc] init];
+        [self.popBtn removeAllItems];
+       for (int i=0;i<[arr count] ;i++) {
+           NSString *myresult = arr[i];
+           if ([myresult length]>0) {
+               NSMutableDictionary *device = [[NSMutableDictionary alloc] init];
+               NSString *deviceinfo = [myresult componentsSeparatedByString:@"device"][0];
+               [device setObject:[deviceinfo stringByReplacingOccurrencesOfString:@"\t" withString:@""] forKey:@"device"];
+               [devices addObject:device];
+               [self.popBtn addItemWithTitle:deviceinfo];
+               if ([devices count]==1) {
+                  [self getXMLValue:deviceinfo];
+               }
+           }
+       }
+//    if ([devices count]==0) {
+//        [self showAlert:@"Error" msg:@"you must start an emulator first！！！"];
+//    }
+}
+- (void)handlePopBtn:(NSPopUpButton *)popBtn {
+    // 选中item 的索引
+    NSLog(@"%d", popBtn.indexOfSelectedItem);
+//    [popBtn selectItemAtIndex:popBtn.indexOfSelectedItem];
+    popBtn.title = popBtn.selectedItem.title;
+    [self getXMLValue:popBtn.title];
   
 
-    // Do any additional setup after loading the view.
+    
 }
-
+-(void)getXMLValue:(NSString *) value{
+      NSString *cmd = [NSString stringWithFormat:@"/bin/sh launcher.sh %@",value];
+      NSString *outputString =[self runTask:cmd] ;
+      NSString *result = [[outputString componentsSeparatedByString:@"\"client_static_keypair\">"]  [1]  componentsSeparatedByString:@"</string>"][0];
+    
+      dic=[[NSMutableDictionary alloc] init];
+      [dic setObject:[NSString stringWithFormat:@"%@==",result] forKey:@"client_static_keypair"];
+}
 - (void)runSTPrivilegedTask {
     NSString *cmd = @"/bin/sh launcher.sh";
+//    if ([self isValidShellCommand:cmd] == NO) {
+//        NSBeep();
+//        NSAlert *alert = [[NSAlert alloc] init];
+//        [alert addButtonWithTitle:@"OK"];
+//        [alert setMessageText:@"Invalid shell command"];
+//        [alert setInformativeText:@"Command must start with path to executable file"];
+//        [alert runModal];
+//        return;
+//    }
     
     STPrivilegedTask *privilegedTask = [[STPrivilegedTask alloc] init];
     
@@ -58,10 +109,20 @@
     NSString *exitStr = [NSString stringWithFormat:@"Exit status: %d", privilegedTask.terminationStatus];
     NSString *result = [[outputString componentsSeparatedByString:@"\"client_static_keypair\">"]  [1]  componentsSeparatedByString:@"</string>"][0];
       NSLog(@"输出臭豆腐的%@",exitStr);
-
+//    NSFileManager *fm = [NSFileManager defaultManager];
+//         NSLog(@"%@",NSHomeDirectory());
+//         NSString *myurl = NSHomeDirectory();
+//         NSString *homepath = [myurl  componentsSeparatedByString:@"Library"][0];
+//         _rootpath = [NSString stringWithFormat:@"%@Downloads/",homepath];
+//         NSString *path =[NSString stringWithFormat:@"%@keystore.xml",_rootpath];
+//         // YES 存在   NO 不存在
+//         BOOL isYES = [fm fileExistsAtPath:path];
+//
+//         if (isYES) {
+//             CParseXML *parser = [[CParseXML  alloc] init];
             
-    dic=[[NSMutableDictionary alloc] init];
-    [dic setObject:[NSString stringWithFormat:@"%@==",result] forKey:@"client_static_keypair"];
+             dic=[[NSMutableDictionary alloc] init];
+             [dic setObject:[NSString stringWithFormat:@"%@==",result] forKey:@"client_static_keypair"];
             //  [dic setObject:[NSString stringWithFormat:@"%@==",parser.nodeDict[@"server_static_public"]] forKey:@"server_static_public"];
             // dic=parser.nodeDict;
              
@@ -70,6 +131,7 @@
      
     
 }
+
 -(void)showAlert:(NSString *) title msg:(NSString *) msg{
     NSAlert *alert = [[NSAlert alloc] init];
 
@@ -97,7 +159,7 @@
 }
 -(IBAction)refresh:(id)sender{
      
-    [self runSTPrivilegedTask];
+    [self getDevices];
   
     
 }
@@ -118,6 +180,32 @@
   
     
 }
+-(NSString *)runTask:(NSString *) cmd{
+   
+          NSTask *task = [[NSTask alloc] init];
+           
+           NSMutableArray *components = [[cmd componentsSeparatedByCharactersInSet:
+                              [NSCharacterSet whitespaceCharacterSet]] mutableCopy];
+           
+           task.launchPath = components[0];
+           [components removeObjectAtIndex:0];
+           task.arguments = components;
+           task.currentDirectoryPath = [[NSBundle  mainBundle] resourcePath];
+           
+           NSPipe *outputPipe = [NSPipe pipe];
+           [task setStandardOutput:outputPipe];
+           [task setStandardError:outputPipe];
+           NSFileHandle *readHandle = [outputPipe fileHandleForReading];
+           
+           [task launch];
+           [task waitUntilExit];
+         NSData *outputData = [readHandle readDataToEndOfFile];
+            NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+           
+            
+            NSString *exitStr = [NSString stringWithFormat:@"Exit status: %d", task.terminationStatus];
+    return outputString;
+}
 - (void)writeStringToFile{
 
     // Build the path, and create if needed.
@@ -125,53 +213,11 @@
     NSData *serialzedData=[NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
     NSString *saveBookmark = [[NSString alloc] initWithBytes:[serialzedData bytes] length:[serialzedData length] encoding:NSUTF8StringEncoding];
     NSError *error;
-    
+     NSString *cmd = [NSString stringWithFormat:@"/bin/sh write.sh %@ %@.json",saveBookmark,self.phoneField.stringValue];
+    [self runTask:cmd];
     //now i write json file.....
   //  [saveBookmark writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-    NSString *cmd = [NSString stringWithFormat:@"/bin/sh write.sh %@ %@.json",saveBookmark,self.phoneField.stringValue];
-//        STPrivilegedTask *privilegedTask = [[STPrivilegedTask alloc] init];
-//        NSMutableArray *components = [[cmd componentsSeparatedByString:@" "] mutableCopy];
-//        NSString *launchPath = components[0];
-//        [components removeObjectAtIndex:0];
-//        [privilegedTask setLaunchPath:launchPath];
-//        [privilegedTask setArguments:components];
-//        [privilegedTask setCurrentDirectoryPath:[[NSBundle mainBundle] resourcePath]];
-//
-//        // Set it off
-//        OSStatus err = [privilegedTask launch];
-//        if (err != errAuthorizationSuccess) {
-//            if (err == errAuthorizationCanceled) {
-//                NSLog(@"User cancelled");
-//                return;
-//            }  else {
-//                NSLog(@"Something went wrong: %d", (int)err);
-//                // For error codes, see http://www.opensource.apple.com/source/libsecurity_authorization/libsecurity_authorization-36329/lib/Authorization.h
-//            }
-//        }
-//
-//        [privilegedTask waitUntilExit];
-      NSTask *task = [[NSTask alloc] init];
-       
-       NSMutableArray *components = [[cmd componentsSeparatedByCharactersInSet:
-                          [NSCharacterSet whitespaceCharacterSet]] mutableCopy];
-       
-       task.launchPath = components[0];
-       [components removeObjectAtIndex:0];
-       task.arguments = components;
-       task.currentDirectoryPath = [[NSBundle  mainBundle] resourcePath];
-       
-       NSPipe *outputPipe = [NSPipe pipe];
-       [task setStandardOutput:outputPipe];
-       [task setStandardError:outputPipe];
-       NSFileHandle *readHandle = [outputPipe fileHandleForReading];
-       
-       [task launch];
-       [task waitUntilExit];
-     NSData *outputData = [readHandle readDataToEndOfFile];
-        NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
-       
-        
-        NSString *exitStr = [NSString stringWithFormat:@"Exit status: %d", task.terminationStatus];
+   
        
 
     if (!error) {

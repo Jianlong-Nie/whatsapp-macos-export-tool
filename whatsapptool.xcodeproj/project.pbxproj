@@ -8,16 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		4D2BCA632585ACFB00689404 /* CParseXML.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2BCA622585ACFB00689404 /* CParseXML.m */; };
+		4D2BCA6525863BD200689404 /* launcher.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D2BCA6425863BD200689404 /* launcher.sh */; };
 		4D6139D825850682003DFC32 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6139D725850682003DFC32 /* AppDelegate.m */; };
 		4D6139DB25850682003DFC32 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6139DA25850682003DFC32 /* ViewController.m */; };
 		4D6139DD25850684003DFC32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D6139DC25850684003DFC32 /* Assets.xcassets */; };
 		4D6139E025850684003DFC32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D6139DE25850684003DFC32 /* Main.storyboard */; };
 		4D6139E325850684003DFC32 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D6139E225850684003DFC32 /* main.m */; };
+		4DE9E63F25864A1600AD2C66 /* STPrivilegedTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DE9E63D25864A1600AD2C66 /* STPrivilegedTask.m */; };
+		4DE9E64C25864C1300AD2C66 /* script.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9E64425864C1300AD2C66 /* script.sh */; };
+		4DE9E64D25864C1300AD2C66 /* lock-icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9E64525864C1300AD2C66 /* lock-icon.icns */; };
+		4DE9E65025864C1300AD2C66 /* script.pl in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9E64825864C1300AD2C66 /* script.pl */; };
+		4DE9E65125864C1300AD2C66 /* unlocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9E64925864C1300AD2C66 /* unlocked.png */; };
+		4DE9E6582586579200AD2C66 /* write.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4DE9E6572586579100AD2C66 /* write.sh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4D2BCA612585ACFB00689404 /* CParseXML.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CParseXML.h; sourceTree = "<group>"; };
 		4D2BCA622585ACFB00689404 /* CParseXML.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CParseXML.m; sourceTree = "<group>"; };
+		4D2BCA6425863BD200689404 /* launcher.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = launcher.sh; sourceTree = "<group>"; };
 		4D6139D325850682003DFC32 /* whatsapptool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = whatsapptool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D6139D625850682003DFC32 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4D6139D725850682003DFC32 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -28,6 +36,13 @@
 		4D6139E125850684003DFC32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D6139E225850684003DFC32 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4D6139E425850684003DFC32 /* whatsapptool.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = whatsapptool.entitlements; sourceTree = "<group>"; };
+		4DE9E63D25864A1600AD2C66 /* STPrivilegedTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STPrivilegedTask.m; sourceTree = "<group>"; };
+		4DE9E63E25864A1600AD2C66 /* STPrivilegedTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STPrivilegedTask.h; sourceTree = "<group>"; };
+		4DE9E64425864C1300AD2C66 /* script.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = script.sh; sourceTree = "<group>"; };
+		4DE9E64525864C1300AD2C66 /* lock-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "lock-icon.icns"; sourceTree = "<group>"; };
+		4DE9E64825864C1300AD2C66 /* script.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = script.pl; sourceTree = "<group>"; };
+		4DE9E64925864C1300AD2C66 /* unlocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unlocked.png; sourceTree = "<group>"; };
+		4DE9E6572586579100AD2C66 /* write.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = write.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +59,8 @@
 		4D6139CA25850682003DFC32 = {
 			isa = PBXGroup;
 			children = (
+				4DE9E6572586579100AD2C66 /* write.sh */,
+				4D2BCA6425863BD200689404 /* launcher.sh */,
 				4D6139D525850682003DFC32 /* whatsapptool */,
 				4D6139D425850682003DFC32 /* Products */,
 			);
@@ -60,6 +77,9 @@
 		4D6139D525850682003DFC32 /* whatsapptool */ = {
 			isa = PBXGroup;
 			children = (
+				4DE9E64025864C1300AD2C66 /* PrivilegedTaskExample */,
+				4DE9E63E25864A1600AD2C66 /* STPrivilegedTask.h */,
+				4DE9E63D25864A1600AD2C66 /* STPrivilegedTask.m */,
 				4D6139D625850682003DFC32 /* AppDelegate.h */,
 				4D6139D725850682003DFC32 /* AppDelegate.m */,
 				4D6139D925850682003DFC32 /* ViewController.h */,
@@ -73,6 +93,17 @@
 				4D2BCA622585ACFB00689404 /* CParseXML.m */,
 			);
 			path = whatsapptool;
+			sourceTree = "<group>";
+		};
+		4DE9E64025864C1300AD2C66 /* PrivilegedTaskExample */ = {
+			isa = PBXGroup;
+			children = (
+				4DE9E64425864C1300AD2C66 /* script.sh */,
+				4DE9E64525864C1300AD2C66 /* lock-icon.icns */,
+				4DE9E64825864C1300AD2C66 /* script.pl */,
+				4DE9E64925864C1300AD2C66 /* unlocked.png */,
+			);
+			path = PrivilegedTaskExample;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,7 +164,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DE9E64D25864C1300AD2C66 /* lock-icon.icns in Resources */,
 				4D6139DD25850684003DFC32 /* Assets.xcassets in Resources */,
+				4DE9E64C25864C1300AD2C66 /* script.sh in Resources */,
+				4D2BCA6525863BD200689404 /* launcher.sh in Resources */,
+				4DE9E6582586579200AD2C66 /* write.sh in Resources */,
+				4DE9E65125864C1300AD2C66 /* unlocked.png in Resources */,
+				4DE9E65025864C1300AD2C66 /* script.pl in Resources */,
 				4D6139E025850684003DFC32 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,8 +192,7 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "rm -rf ~/Downloads/keystore.xml\n~/Library/Android/sdk/platform-tools/adb pull /data/data/com.whatsapp/shared_prefs/keystore.xml    ~/Downloads/keystore.xml\n\n";
+			shellScript = "#rm -rf ~/Downloads/keystore.xml\n#~/Library/Android/sdk/platform-tools/adb pull /data/data/com.whatsapp/shared_prefs/keystore.xml    ~/Downloads/keystore.xml\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -166,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D6139DB25850682003DFC32 /* ViewController.m in Sources */,
+				4DE9E63F25864A1600AD2C66 /* STPrivilegedTask.m in Sources */,
 				4D2BCA632585ACFB00689404 /* CParseXML.m in Sources */,
 				4D6139E325850684003DFC32 /* main.m in Sources */,
 				4D6139D825850682003DFC32 /* AppDelegate.m in Sources */,

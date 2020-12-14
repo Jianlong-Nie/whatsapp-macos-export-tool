@@ -715,7 +715,7 @@
                                 <rect key="frame" x="100" y="100" width="700" height="400"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IkZ-7V-OwE">
-                                        <rect key="frame" x="270" y="337" width="27" height="16"/>
+                                        <rect key="frame" x="213" y="275" width="27" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="CC:" id="Id4-az-4eg">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -724,7 +724,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mmS-6e-lfv">
-                                        <rect key="frame" x="338" y="330" width="219" height="29"/>
+                                        <rect key="frame" x="281" y="268" width="219" height="29"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="OPu-BF-BwQ">
                                             <font key="font" metaFont="system"/>
@@ -733,7 +733,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MK5-bN-90I">
-                                        <rect key="frame" x="270" y="248" width="47" height="16"/>
+                                        <rect key="frame" x="213" y="186" width="47" height="16"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Phone:" id="NBO-qU-L0u">
                                             <font key="font" usesAppearanceFont="YES"/>
@@ -742,7 +742,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QfC-Dg-Pcb">
-                                        <rect key="frame" x="338" y="241" width="219" height="29"/>
+                                        <rect key="frame" x="281" y="179" width="219" height="29"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="YOv-re-Dch">
                                             <font key="font" metaFont="system"/>
@@ -751,9 +751,9 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i9i-ke-fPQ">
-                                        <rect key="frame" x="387" y="13" width="103" height="32"/>
+                                        <rect key="frame" x="339" y="73" width="103" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="确定" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aah-19-Icd">
+                                        <buttonCell key="cell" type="push" title="ok" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aah-19-Icd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="13" name=".PingFangSC-Regular"/>
                                         </buttonCell>
@@ -763,12 +763,34 @@
                                     </button>
                                 </subviews>
                             </view>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cJS-FF-DfR">
+                                <rect key="frame" x="794" y="552" width="85" height="32"/>
+                                <buttonCell key="cell" type="push" title="refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CDY-4b-0ps">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="13" name=".PingFangSC-Regular"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="refresh:" target="XfG-lQ-9wD" id="7HT-2o-f60"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oXK-x0-T36">
+                                <rect key="frame" x="483" y="527" width="411" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="charWrapping" alignment="center" title="when you want to get a new whatschat account，you must refresh" id="ogA-K2-eh6">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="2Ft-p6-qnE" firstAttribute="top" secondItem="BKF-ao-7Nw" secondAttribute="top" constant="100" id="YyJ-Jk-vb1"/>
+                            <constraint firstItem="oXK-x0-T36" firstAttribute="top" secondItem="cJS-FF-DfR" secondAttribute="bottom" constant="16" id="gTe-Kj-pIp"/>
+                            <constraint firstItem="cJS-FF-DfR" firstAttribute="top" secondItem="BKF-ao-7Nw" secondAttribute="top" constant="20" id="hLo-6X-tcB"/>
+                            <constraint firstAttribute="trailing" secondItem="cJS-FF-DfR" secondAttribute="trailing" constant="27" id="kqU-qB-iJx"/>
                             <constraint firstAttribute="bottom" secondItem="2Ft-p6-qnE" secondAttribute="bottom" constant="100" id="lVc-nK-N6y"/>
                             <constraint firstAttribute="trailing" secondItem="2Ft-p6-qnE" secondAttribute="trailing" constant="100" id="sC7-Pj-PAf"/>
                             <constraint firstItem="2Ft-p6-qnE" firstAttribute="leading" secondItem="BKF-ao-7Nw" secondAttribute="leading" constant="100" id="ygA-zq-bWq"/>
+                            <constraint firstAttribute="trailing" secondItem="oXK-x0-T36" secondAttribute="trailing" constant="8" id="ywK-yK-Pj7"/>
                         </constraints>
                     </view>
                     <connections>

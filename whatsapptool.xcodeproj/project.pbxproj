@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1C07A2266F42E800825DB9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D1C07A0266F42E800825DB9 /* XMLReader.m */; };
 		4D25039A2587F4FC00121FBD /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2503992587F4FC00121FBD /* WindowController.m */; };
 		4D25039C2587FFD900121FBD /* getdevices.sh in Resources */ = {isa = PBXBuildFile; fileRef = 4D25039B2587FFD900121FBD /* getdevices.sh */; };
 		4D25039E2588102500121FBD /* Tools.png in Resources */ = {isa = PBXBuildFile; fileRef = 4D25039D2588102500121FBD /* Tools.png */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D1C07A0266F42E800825DB9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		4D1C07A1266F42E800825DB9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		4D2503982587F4FC00121FBD /* WindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		4D2503992587F4FC00121FBD /* WindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
 		4D25039B2587FFD900121FBD /* getdevices.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = getdevices.sh; sourceTree = "<group>"; };
@@ -63,6 +66,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D1C079F266F42D100825DB9 /* XMLReader */ = {
+			isa = PBXGroup;
+			children = (
+				4D1C07A1266F42E800825DB9 /* XMLReader.h */,
+				4D1C07A0266F42E800825DB9 /* XMLReader.m */,
+			);
+			path = XMLReader;
+			sourceTree = "<group>";
+		};
 		4D6139CA25850682003DFC32 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +98,7 @@
 		4D6139D525850682003DFC32 /* whatsapptool */ = {
 			isa = PBXGroup;
 			children = (
+				4D1C079F266F42D100825DB9 /* XMLReader */,
 				4DE9E64025864C1300AD2C66 /* PrivilegedTaskExample */,
 				4DE9E63E25864A1600AD2C66 /* STPrivilegedTask.h */,
 				4DE9E63D25864A1600AD2C66 /* STPrivilegedTask.m */,
@@ -220,6 +233,7 @@
 				4D2BCA632585ACFB00689404 /* CParseXML.m in Sources */,
 				4D6139E325850684003DFC32 /* main.m in Sources */,
 				4D6139D825850682003DFC32 /* AppDelegate.m in Sources */,
+				4D1C07A2266F42E800825DB9 /* XMLReader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

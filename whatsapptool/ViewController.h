@@ -16,6 +16,7 @@
 }
 @property(nonatomic, weak) IBOutlet NSTextField *ccField;
 @property(nonatomic, weak) IBOutlet NSTextField *phoneField;
+@property(nonatomic, weak) IBOutlet NSTextField *currentServerField;
 @property(nonatomic, weak) IBOutlet NSPopUpButton *popBtn;
 -(IBAction)writeAJson:(id)sender;
 @end
